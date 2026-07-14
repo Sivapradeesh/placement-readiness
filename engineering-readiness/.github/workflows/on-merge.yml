@@ -1,0 +1,69 @@
+name: Recalculate Scores on Merge
+
+on:
+  push:
+    branches: [main]
+    # ── LOOP GUARD: skip if the commit message contains [skip ci] ──────────────
+    # This prevents the bot commit from re-triggering this workflow infinitely.
+
+# Only run one job at a time on main — queue up if multiple PRs merge quickly
+concurrency:
+  group: on-merge-main
+  cancel-in-progress: false
+
+jobs:
+  recalculate:
+    name: Recalculate Scores + Regenerate README
+    runs-on: ubuntu-latest
+
+    # Skip if this commit was made by the GitHub Actions bot (loop guard)
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+
+    permissions:
+      contents: write
+
+    steps:
+      # ── Checkout main ─────────────────────────────────────────────────────────
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ── Setup Node ────────────────────────────────────────────────────────────
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # ── Step 1: Recalculate scores + attendance + team rollups ────────────────
+      - name: Recalculate scores
+        run: node scripts/recalculate-scores.mjs
+
+      # ── Step 2: Regenerate README leaderboard ─────────────────────────────────
+      - name: Regenerate README leaderboard
+        run: node scripts/generate-readme.mjs
+
+      # ── Step 3: Commit the updated JSON + README back to main ─────────────────
+      - name: Commit regenerated files
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git add scoreboard.json attendance.json teams.json README.md
+          
+          # Only commit if there are actual changes
+          if git diff --cached --quiet; then
+            echo "No changes to commit — all files already up to date."
+          else
+            git commit -m "chore: recalculate scores [skip ci]"
+            git push origin main
+            echo "✅ Committed and pushed updated files."
+          fi
+
+      # ── Step 4: Trigger Vercel redeploy ──────────────────────────────────────
+      - name: Trigger Vercel Deploy Hook
+        if: ${{ secrets.VERCEL_DEPLOY_HOOK != '' }}
+        run: |
+          curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
+          echo "✅ Vercel deploy hook triggered."

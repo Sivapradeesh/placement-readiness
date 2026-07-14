@@ -1,0 +1,91 @@
+name: Validate PR Submission
+
+on:
+  pull_request:
+    branches: [main]
+
+# Prevent concurrent validation runs for the same PR
+concurrency:
+  group: validate-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate Submission
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      statuses: write
+
+    steps:
+      # ── Checkout with full history for diff ──────────────────────────────────
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ── Setup Node ────────────────────────────────────────────────────────────
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # ── Get list of changed files ─────────────────────────────────────────────
+      - name: Get changed files
+        id: files
+        run: |
+          CHANGED=$(git diff --name-only origin/main...HEAD | tr '\n' ',')
+          echo "changed=${CHANGED}" >> $GITHUB_OUTPUT
+          echo "Changed files: $CHANGED"
+
+      # ── Determine the author's roll number from roster.json ───────────────────
+      - name: Resolve roll number from PR author
+        id: roll
+        run: |
+          GITHUB_LOGIN="${{ github.event.pull_request.user.login }}"
+          echo "PR author GitHub login: $GITHUB_LOGIN"
+          
+          # Find the roll number whose github field matches this login
+          ROLL=$(node -e "
+            const roster = JSON.parse(require('fs').readFileSync('students/roster.json','utf8'));
+            const login = '$GITHUB_LOGIN'.toLowerCase();
+            const entry = Object.entries(roster).find(([, v]) => v.github.toLowerCase() === login);
+            if (!entry) { console.error('GitHub login not found in roster.json:', login); process.exit(1); }
+            console.log(entry[0]);
+          ")
+          
+          echo "Resolved roll number: $ROLL"
+          echo "roll=${ROLL}" >> $GITHUB_OUTPUT
+
+      # ── Run the validation script ─────────────────────────────────────────────
+      - name: Run validate-submission.mjs
+        run: |
+          node scripts/validate-submission.mjs \
+            --changed-files="${{ steps.files.outputs.changed }}" \
+            --author-roll="${{ steps.roll.outputs.roll }}"
+
+      # ── On failure, post a helpful comment on the PR ───────────────────────────
+      - name: Post failure comment
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## ❌ Submission Validation Failed
+              
+              Your PR did not pass the automatic validation check. Common reasons:
+              
+              - **Wrong folder**: You edited files outside your own \`students/${process.env.ROLL}/\` or \`activities/dayXX/${process.env.ROLL}/\` folder.
+              - **Missing files**: The required \`README.md\`, \`reflection.md\`, or \`prompts.md\` is not in your submission folder.
+              - **Empty reflection**: Your \`reflection.md\` is too short. Write a real reflection (minimum 50 characters).
+              - **File too large**: A file exceeds the 2 MB limit.
+              
+              Please check the **Actions** tab for the full error message, fix the issue, and push again.
+              
+              > 💡 If you believe this is a mistake, contact the placement representative.`
+            })
+        env:
+          ROLL: ${{ steps.roll.outputs.roll }}
