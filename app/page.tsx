@@ -13,8 +13,8 @@ import LeaderboardTable from '@/components/LeaderboardTable'
 import { AggregatedHeatmap } from '@/components/Heatmap'
 
 export const metadata: Metadata = {
-  title: 'Dashboard — Engineering Readiness Portal',
-  description: 'Daily submission tracking, leaderboard, and team standings for the 25MX Engineering Readiness cohort.',
+  title: 'Dashboard — Placement Readiness Portal',
+  description: 'Daily submission tracking, leaderboard, and team standings for the 25MX Placement Readiness cohort.',
 }
 
 export const revalidate = 60
@@ -54,8 +54,8 @@ export default async function DashboardPage() {
           <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse-slow" />
           Auto-refreshes every 60 seconds
         </div>
-        <h1 className="text-3xl font-bold text-white">
-          Engineering Readiness{' '}
+        <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+          Placement Readiness{' '}
           <span className="text-gradient">Dashboard</span>
         </h1>
         <p className="text-gray-400 mt-1">
@@ -64,36 +64,36 @@ export default async function DashboardPage() {
       </div>
 
       {/* ── Stat row ────────────────────────────────────────────────────────── */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <div className="stat-card">
-          <div className="stat-label">Today&apos;s Submissions</div>
-          <div className="stat-value">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="stat-card p-6 glass hover:-translate-y-1 transition-transform">
+          <div className="stat-label mb-2 opacity-80">Today&apos;s Submissions</div>
+          <div className="stat-value text-3xl">
             {todaySubmissions}
-            <span className="text-lg text-gray-600 font-normal">/{totalStudents}</span>
+            <span className="text-xl text-slate-500 font-normal">/{totalStudents}</span>
           </div>
-          <div className="stat-sub">
+          <div className="stat-sub mt-2 opacity-60">
             {latestDay ? `Day ${parseInt(latestDay.replace('day', ''), 10)}` : '—'}
           </div>
         </div>
 
-        <div className="stat-card">
-          <div className="stat-label">Overall Attendance</div>
-          <div className={`stat-value ${overallAttendancePct >= 80 ? 'text-brand-400' : overallAttendancePct >= 50 ? 'text-yellow-400' : 'text-red-400'}`}>
+        <div className="stat-card p-6 glass hover:-translate-y-1 transition-transform">
+          <div className="stat-label mb-2 opacity-80">Overall Attendance</div>
+          <div className={`stat-value text-3xl ${overallAttendancePct >= 80 ? 'text-brand-400' : overallAttendancePct >= 50 ? 'text-yellow-400' : 'text-red-400'}`}>
             {overallAttendancePct}%
           </div>
-          <div className="stat-sub">across {daysRun.length} sessions</div>
+          <div className="stat-sub mt-2 opacity-60">across {daysRun.length} sessions</div>
         </div>
 
-        <div className="stat-card">
-          <div className="stat-label">Top Score</div>
-          <div className="stat-value">{students[0]?.total ?? 0}</div>
-          <div className="stat-sub">{students[0]?.name ?? '—'}</div>
+        <div className="stat-card p-6 glass hover:-translate-y-1 transition-transform">
+          <div className="stat-label mb-2 opacity-80">Top Score</div>
+          <div className="stat-value text-3xl text-brand-300">{students[0]?.total ?? 0}</div>
+          <div className="stat-sub mt-2 opacity-60">{students[0]?.name ?? '—'}</div>
         </div>
 
-        <div className="stat-card">
-          <div className="stat-label">Top Team</div>
-          <div className="stat-value text-base">{topTeam?.name ?? '—'}</div>
-          <div className="stat-sub">{topTeam?.averageScore ?? 0} avg pts</div>
+        <div className="stat-card p-6 glass hover:-translate-y-1 transition-transform">
+          <div className="stat-label mb-2 opacity-80">Top Team</div>
+          <div className="stat-value text-xl text-purple-300">{topTeam?.name ?? '—'}</div>
+          <div className="stat-sub mt-2 opacity-60">{topTeam?.averageScore ?? 0} avg pts</div>
         </div>
       </div>
 

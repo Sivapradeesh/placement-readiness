@@ -2,21 +2,21 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 
-const OWNER = process.env.NEXT_PUBLIC_GITHUB_OWNER ?? 'psgmx'
-const REPO  = process.env.NEXT_PUBLIC_GITHUB_REPO  ?? 'engineering-readiness'
+const OWNER = process.env.NEXT_PUBLIC_GITHUB_OWNER ?? 'brittytino'
+const REPO  = process.env.NEXT_PUBLIC_GITHUB_REPO  ?? 'placement-readiness'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Engineering Readiness Portal — 25MX',
-    template: '%s | Engineering Readiness',
+    default: 'Placement Readiness Portal — 25MX',
+    template: '%s | Placement Readiness',
   },
   description:
-    'Public leaderboard and proof portal for the 25MX Engineering Readiness programme. Track submissions, scores, and attendance across all students and teams.',
-  metadataBase: new URL('https://engineering-readiness.vercel.app'),
+    'Public leaderboard and proof portal for the 25MX Placement Readiness programme. Track submissions, scores, and attendance across all students and teams.',
+  metadataBase: new URL('https://placement-readiness.vercel.app'),
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    siteName: 'Engineering Readiness Portal',
+    siteName: 'Placement Readiness Portal',
   },
 }
 

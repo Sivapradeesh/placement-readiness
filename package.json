@@ -1,5 +1,5 @@
 {
-  "name": "engineering-readiness-website",
+  "name": "placement-readiness-website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "^14.2.33",
-    "react": "^18",
-    "react-dom": "^18",
+    "next": "^16.2.10",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "react-markdown": "^9.0.1",
     "rehype-sanitize": "^6.0.0",
     "remark-gfm": "^4.0.0"
@@ -21,8 +21,8 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.20",
-    "eslint": "^8",
-    "eslint-config-next": "^14.2.33",
+    "eslint": "^10.7.0",
+    "eslint-config-next": "^16.2.10",
     "postcss": "^8",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"

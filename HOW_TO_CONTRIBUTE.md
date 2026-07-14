@@ -1,4 +1,4 @@
-# How to Contribute — Engineering Readiness Portal
+# How to Contribute — Placement Readiness Portal
 
 > **Read this before you do anything else.** This guide walks you through the entire process from zero, even if you have never used Git or GitHub before.
 
@@ -6,7 +6,7 @@
 
 ## What is forking, and why are you doing it?
 
-The "Engineering Readiness" repository belongs to your placement representative. You don't have permission to write directly to it — and that's a good thing, because 70 people writing to the same place at the same time causes chaos.
+The "Placement Readiness" repository belongs to your placement representative. You don't have permission to write directly to it — and that's a good thing, because 70 people writing to the same place at the same time causes chaos.
 
 **Forking** means GitHub makes a complete personal copy of the repository under your own account. You work entirely in your copy. When you're done, you submit a "pull request" (PR) — which is just a formal way of saying "here is my work, please merge it into the main repo." The placement rep reviews it and merges it. That's the whole workflow.
 
@@ -16,52 +16,66 @@ The "Engineering Readiness" repository belongs to your placement representative.
 
 ### 1. Fork the repo
 
-1. Open a browser and go to: `https://github.com/psgmx/engineering-readiness`
+1. Open a browser and go to: `https://github.com/brittytino/placement-readiness`
 2. In the top-right corner of the page, click the **"Fork"** button. (It looks like a split arrow with a number next to it.)
 3. On the next page, leave all defaults as-is and click **"Create fork"**.
-4. GitHub will take you to `https://github.com/YOUR-USERNAME/engineering-readiness`. This is now YOUR copy.
+4. GitHub will take you to `https://github.com/YOUR-USERNAME/placement-readiness`. This is now YOUR copy.
 
 ### 2. Clone your fork to your laptop
 
-Open a terminal (Git Bash, VS Code terminal, or Command Prompt) and run:
+Open a terminal and run the clone command. 
+*Note: Replace `YOUR-USERNAME` with your actual GitHub username.*
 
+**Linux / macOS / Windows (Git Bash/PowerShell)**
 ```bash
-git clone https://github.com/YOUR-USERNAME/engineering-readiness.git
-```
-
-Replace `YOUR-USERNAME` with your actual GitHub username. Then:
-
-```bash
-cd engineering-readiness
+git clone https://github.com/YOUR-USERNAME/placement-readiness.git
+cd placement-readiness
 ```
 
 You are now inside the project folder on your laptop.
 
 ### 3. Create your files
 
-**For Day 1 (profile submission):**
+#### **For Day 1 (profile submission):**
 
+**Linux / macOS (Bash/Zsh)**
 ```bash
-mkdir students/25mx301
+mkdir -p students/25mx301
+# Create profile.md and edit it
+touch students/25mx301/profile.md
 ```
-Replace `25mx301` with YOUR roll number. Then create the file `students/25mx301/profile.md` and fill in your name, GitHub username, and your one-line goal for the week.
 
-**For Day 2 and beyond:**
+**Windows (PowerShell)**
+```powershell
+New-Item -ItemType Directory -Force -Path students\25mx301
+New-Item -ItemType File -Force -Path students\25mx301\profile.md
+```
 
+Replace `25mx301` with YOUR roll number. Open `profile.md` in your code editor and fill in your name, GitHub username, and your one-line goal for the week.
+
+#### **For Day 2 and beyond:**
+
+**Linux / macOS (Bash/Zsh)**
 ```bash
 mkdir -p activities/day02/25mx301
-```
-
-Copy the template files:
-```bash
 cp activities/day02/_template/README.md    activities/day02/25mx301/README.md
 cp activities/day02/_template/reflection.md activities/day02/25mx301/reflection.md
 cp activities/day02/_template/prompts.md   activities/day02/25mx301/prompts.md
 ```
 
+**Windows (PowerShell)**
+```powershell
+New-Item -ItemType Directory -Force -Path activities\day02\25mx301
+Copy-Item activities\day02\_template\README.md -Destination activities\day02\25mx301\README.md
+Copy-Item activities\day02\_template\reflection.md -Destination activities\day02\25mx301\reflection.md
+Copy-Item activities\day02\_template\prompts.md -Destination activities\day02\25mx301\prompts.md
+```
+
 Then open each file and fill in the content.
 
 ### 4. Save your work with Git
+
+These commands work across Linux, macOS, and Windows.
 
 ```bash
 git add .
@@ -78,11 +92,11 @@ git push origin main
 
 ### 6. Open a Pull Request
 
-1. Go to your fork on GitHub: `https://github.com/YOUR-USERNAME/engineering-readiness`
-2. You should see a yellow banner saying **"This branch is 1 commit ahead of psgmx:main"** with a **"Contribute"** button. Click it.
+1. Go to your fork on GitHub: `https://github.com/YOUR-USERNAME/placement-readiness`
+2. You should see a banner saying **"This branch is 1 commit ahead of brittytino:main"** with a **"Contribute"** button. Click it.
 3. Click **"Open pull request"**.
 4. Make sure the settings at the top say:
-   - **base repository:** `psgmx/engineering-readiness`
+   - **base repository:** `brittytino/placement-readiness`
    - **base:** `main`
    - **compare:** `main`
 5. Give your PR a title like `day02: 25mx301 submission` and click **"Create pull request"**.
@@ -120,13 +134,13 @@ If your PR touches any of these files, the automatic check will reject it. The p
 
 ### I forgot to fork before cloning
 
-**Symptom:** You cloned `psgmx/engineering-readiness` directly instead of your fork.
+**Symptom:** You cloned `brittytino/placement-readiness` directly instead of your fork.
 
 **Fix:**
 1. Fork the repo on GitHub (Step 1 above)
 2. In your terminal, inside the project folder, update the remote:
 ```bash
-git remote set-url origin https://github.com/YOUR-USERNAME/engineering-readiness.git
+git remote set-url origin https://github.com/YOUR-USERNAME/placement-readiness.git
 git push origin main
 ```
 
@@ -134,7 +148,7 @@ git push origin main
 
 ### I opened a PR against the wrong branch
 
-**Symptom:** Your PR shows the base as something other than `psgmx/engineering-readiness` → `main`.
+**Symptom:** Your PR shows the base as something other than `brittytino/placement-readiness` → `main`.
 
 **Fix:** Close the PR (click "Close pull request" at the bottom). Open a new one with the correct settings.
 
@@ -145,7 +159,7 @@ git push origin main
 **Symptom:** `git push` says "rejected" or "Permission denied".
 
 **Possible causes:**
-- You're pushing to `psgmx/engineering-readiness` directly (you don't have permission). Make sure your remote URL points to YOUR fork: `https://github.com/YOUR-USERNAME/engineering-readiness.git`
+- You're pushing to `brittytino/placement-readiness` directly (you don't have permission). Make sure your remote URL points to YOUR fork: `https://github.com/YOUR-USERNAME/placement-readiness.git`
 - You're not logged in. Run `git config user.email "you@example.com"` and `git config user.name "Your Name"`.
 - GitHub now requires a token instead of a password. Create a Personal Access Token at https://github.com/settings/tokens and use it as your password when prompted.
 

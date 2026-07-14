@@ -4,8 +4,7 @@ import MarkdownRenderer from '@/components/MarkdownRenderer'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'How to Contribute',
-  description: 'Step-by-step guide for students to fork, submit, and open PRs for the Engineering Readiness portal.',
+  description: 'Step-by-step guide for students to fork, submit, and open PRs for the Placement Readiness portal.',
 }
 
 export const revalidate = 3600 // 1 hour — this file changes rarely
@@ -36,14 +35,14 @@ export default async function HowToContributePage() {
           <div className="space-y-1.5 font-mono text-xs">
             <div className="flex items-center gap-2">
               <span className="text-gray-600">1.</span>
-              <code className="bg-gray-800 text-gray-200 px-2 py-1 rounded flex-1">
-                git clone https://github.com/{'<your-username>'}/engineering-readiness.git
+              <code className="bg-slate-800 text-slate-200 px-2 py-1 rounded flex-1">
+                git clone https://github.com/{'<your-username>'}/placement-readiness.git
               </code>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-gray-600">2.</span>
-              <code className="bg-gray-800 text-gray-200 px-2 py-1 rounded flex-1">
-                cd engineering-readiness
+              <code className="bg-slate-800 text-slate-200 px-2 py-1 rounded flex-1">
+                cd placement-readiness
               </code>
             </div>
             <div className="flex items-center gap-2">
@@ -96,17 +95,17 @@ export default async function HowToContributePage() {
 
               <h2 className="text-xl font-bold text-white">Step 1: Fork the Repository</h2>
               <p>
-                Go to <strong>https://github.com/psgmx/engineering-readiness</strong>.
+                Go to <strong>https://github.com/brittytino/placement-readiness</strong>.
                 Click the <strong>&quot;Fork&quot;</strong> button in the top-right corner of the page.
                 This creates your own personal copy of the repo under your GitHub account.
                 You&apos;ll work entirely in your fork — you will never push directly to the main repo.
               </p>
 
               <h2 className="text-xl font-bold text-white">Step 2: Clone your fork</h2>
-              <pre className="bg-gray-800 rounded-lg p-4 overflow-x-auto text-sm font-mono text-gray-200">
-                {`git clone https://github.com/<your-username>/engineering-readiness.git\ncd engineering-readiness`}
+              <pre className="bg-slate-800 rounded-lg p-4 overflow-x-auto text-sm font-mono text-slate-200">
+                {`git clone https://github.com/<your-username>/placement-readiness.git\ncd placement-readiness`}
               </pre>
-              <p>Replace <code className="font-mono bg-gray-800 px-1 rounded">&lt;your-username&gt;</code> with your actual GitHub username.</p>
+              <p>Replace <code className="font-mono bg-slate-800 px-1 rounded">&lt;your-username&gt;</code> with your actual GitHub username.</p>
 
               <h2 className="text-xl font-bold text-white">Step 3: Create your files</h2>
               <p>For Day 1, create: <code className="font-mono bg-gray-800 px-1 rounded">students/25mxXXX/profile.md</code> (your roll number).</p>
@@ -122,7 +121,7 @@ export default async function HowToContributePage() {
               <ol className="list-decimal list-inside space-y-1">
                 <li>Go to your fork on GitHub</li>
                 <li>Click the green &quot;Compare &amp; pull request&quot; button that appears</li>
-                <li>Make sure the base repo is <strong>psgmx/engineering-readiness</strong> and base branch is <strong>main</strong></li>
+                <li>Make sure the base repo is <strong>brittytino/placement-readiness</strong> and base branch is <strong>main</strong></li>
                 <li>Click &quot;Create pull request&quot;</li>
               </ol>
 

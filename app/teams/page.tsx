@@ -7,7 +7,7 @@ import TeamCard from '@/components/TeamCard'
 
 export const metadata: Metadata = {
   title: 'Teams',
-  description: 'All 7 team standings, attendance rates, and member counts for the Engineering Readiness cohort.',
+  description: 'All 7 team standings, attendance rates, and member counts for the Placement Readiness cohort.',
 }
 
 export const revalidate = 60
@@ -31,29 +31,29 @@ export default async function TeamsPage() {
       </div>
 
       {/* Overall team stats */}
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
-        <div className="stat-card lg:col-span-1">
-          <div className="stat-label">Top Team</div>
-          <div className="stat-value text-base">{teamSummaries[0]?.name ?? '—'}</div>
-          <div className="stat-sub">{teamSummaries[0]?.averageScore ?? 0} avg pts</div>
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="stat-card p-6 glass hover:-translate-y-1 transition-transform lg:col-span-1">
+          <div className="stat-label mb-2 opacity-80">Top Team</div>
+          <div className="stat-value text-3xl text-brand-400">{teamSummaries[0]?.name ?? '—'}</div>
+          <div className="stat-sub mt-2 opacity-60">{teamSummaries[0]?.averageScore ?? 0} avg pts</div>
         </div>
-        <div className="stat-card">
-          <div className="stat-label">Best Attendance</div>
-          <div className="stat-value text-base">
+        <div className="stat-card p-6 glass hover:-translate-y-1 transition-transform">
+          <div className="stat-label mb-2 opacity-80">Best Attendance</div>
+          <div className="stat-value text-3xl text-purple-300">
             {[...teamSummaries].sort((a, b) => b.attendanceRate - a.attendanceRate)[0]?.name ?? '—'}
           </div>
-          <div className="stat-sub">
+          <div className="stat-sub mt-2 opacity-60">
             {[...teamSummaries].sort((a, b) => b.attendanceRate - a.attendanceRate)[0]?.attendanceRate ?? 0}%
           </div>
         </div>
-        <div className="stat-card col-span-2 lg:col-span-1">
-          <div className="stat-label">Average Team Score</div>
-          <div className="stat-value">
+        <div className="stat-card p-6 glass hover:-translate-y-1 transition-transform col-span-2 lg:col-span-1">
+          <div className="stat-label mb-2 opacity-80">Average Team Score</div>
+          <div className="stat-value text-3xl text-pink-300">
             {teamSummaries.length > 0
-              ? Math.round(teamSummaries.reduce((s, t) => s + t.averageScore, 0) / teamSummaries.length)
+              ? Math.round(teamSummaries.reduce((s, t) => s + (Number(t.averageScore) || 0), 0) / teamSummaries.length) || 0
               : 0}
           </div>
-          <div className="stat-sub">across all teams</div>
+          <div className="stat-sub mt-2 opacity-60">across all teams</div>
         </div>
       </div>
 

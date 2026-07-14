@@ -7,7 +7,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'Activities',
-  description: 'Timeline of all Engineering Readiness sessions with per-day submission rates.',
+  description: 'Timeline of all Placement Readiness sessions with per-day submission rates.',
 }
 
 export const revalidate = 60
@@ -27,7 +27,7 @@ export default async function ActivitiesPage() {
   return (
     <div className="space-y-6 animate-fade-in">
       <div>
-        <h1 className="text-3xl font-bold text-white">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
           Activity <span className="text-gradient">Timeline</span>
         </h1>
         <p className="text-gray-400 mt-1">
@@ -51,12 +51,12 @@ export default async function ActivitiesPage() {
               <Link key={day.id} href={`/activities/${day.id}`}>
                 <div className="card-hover flex flex-col sm:flex-row sm:items-center gap-4">
                   {/* Day badge */}
-                  <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-brand-600/15 border border-brand-500/20 flex items-center justify-center text-center">
+                  <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-500/20 to-purple-500/20 border border-brand-500/30 flex items-center justify-center text-center backdrop-blur-sm shadow-inner shadow-brand-500/10">
                     <div>
-                      <div className="text-xl font-bold text-brand-400 leading-none">
+                      <div className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-brand-300 to-purple-300 leading-none">
                         {parseInt(day.id.replace('day', ''), 10)}
                       </div>
-                      <div className="text-xs text-gray-500 mt-0.5">DAY</div>
+                      <div className="text-[10px] font-bold text-brand-400 mt-1 uppercase tracking-widest">DAY</div>
                     </div>
                   </div>
 

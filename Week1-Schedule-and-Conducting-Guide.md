@@ -1,4 +1,4 @@
-# Week 1 — Engineering Readiness Portal Launch
+# Week 1 — Placement Readiness Portal Launch
 ### Conducting Guide for the Placement Representative
 
 **Cohort:** 25MX (≤70 students)
@@ -11,7 +11,7 @@
 
 ## 0. Before Day 1 — One-time setup (do this yourself, 1–2 hours)
 
-1. Create the main repo (e.g. `psgmx-readiness`) — public.
+1. Create the main repo (e.g. `placement-readiness`) — public.
 2. Build it using the **AI Agent Build Prompt** (separate file) so the site, JSON schemas, and GitHub Actions already exist.
 3. Add a `students/roster.json` with all 70 roll numbers pre-listed (empty scores). This means Day 1 for students is just *claiming* their folder, not creating the whole structure from scratch.
 4. Assign each student to one of 7 teams in `teams.json`. Suggested split for even helping-load:

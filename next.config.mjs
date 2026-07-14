@@ -18,10 +18,8 @@ const nextConfig = {
     NEXT_PUBLIC_GITHUB_OWNER: process.env.NEXT_PUBLIC_GITHUB_OWNER ?? 'psgmx',
     NEXT_PUBLIC_GITHUB_REPO:  process.env.NEXT_PUBLIC_GITHUB_REPO  ?? 'engineering-readiness',
   },
-  experimental: {
-    outputFileTracingIncludes: {
-      '/**/*': ['./*.json', './students/**/*', './activities/**/*'],
-    },
+  outputFileTracingIncludes: {
+    '/**/*': ['./*.json', './students/**/*', './activities/**/*'],
   },
 }
 

@@ -1,6 +1,6 @@
-# Owner Guide — Engineering Readiness Portal
+# Owner Guide — Placement Readiness Portal
 
-> This file is for whoever holds the role of placement representative and owns the `psgmx/engineering-readiness` repository. Keep it updated as the role changes hands.
+> This file is for whoever holds the role of placement representative and owns the `brittytino/placement-readiness` repository. Keep it updated as the role changes hands.
 
 ---
 
@@ -17,7 +17,7 @@
 
 ### After a session
 
-1. Check `https://github.com/psgmx/engineering-readiness/actions` — the `on-merge.yml` Action should show a green run.
+1. Check `https://github.com/brittytino/placement-readiness/actions` — the `on-merge.yml` Action should show a green run.
 2. Open the live site — verify the dashboard shows today's submission count.
 3. Skim 2–3 reflections for quality signal.
 
@@ -102,28 +102,28 @@ The site shows this as a yellow heatmap cell (distinct from green = automatic pr
 
 ### 1. Create the repo
 - Go to github.com → New repository
-- Name: `engineering-readiness`
+- Name: `placement-readiness`
 - Visibility: **Public**
 - Don't add a README (we already have one)
 
 ### 2. Push this code
 ```bash
-cd d:\p\engineering-readiness
+cd d:\p\placement-readiness
 git init
 git add .
 git commit -m "feat: initial repo setup"
-git remote add origin https://github.com/psgmx/engineering-readiness.git
+git remote add origin https://github.com/brittytino/placement-readiness.git
 git push -u origin main
 ```
 
 ### 3. Deploy to Vercel
 1. Go to [vercel.com](https://vercel.com) → New Project
-2. Import `psgmx/engineering-readiness` from GitHub
+2. Import `brittytino/placement-readiness` from GitHub
 3. Leave the **Root Directory** empty (default).
 4. Vercel will auto-detect Next.js at the root and configure the build automatically.
 5. Add environment variables:
-   - `NEXT_PUBLIC_GITHUB_OWNER` = `psgmx`
-   - `NEXT_PUBLIC_GITHUB_REPO` = `engineering-readiness`
+   - `NEXT_PUBLIC_GITHUB_OWNER` = `brittytino`
+   - `NEXT_PUBLIC_GITHUB_REPO` = `placement-readiness`
 6. Deploy
 7. Copy the **Deploy Hook URL** from Settings → Git → Deploy Hooks
 
@@ -136,7 +136,7 @@ git push -u origin main
 ### 5. Test the end-to-end flow
 1. Create a test fork under a different GitHub account
 2. Add a file to `activities/day01/25mx301/README.md` in the fork
-3. Open a PR back to `psgmx/engineering-readiness`
+3. Open a PR back to `brittytino/placement-readiness`
 4. Confirm the validate-pr Action runs and shows a green tick
 5. Merge the PR
 6. Confirm the on-merge Action runs, updates `attendance.json` and `scoreboard.json`, and the site redeployed

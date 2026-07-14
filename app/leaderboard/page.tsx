@@ -8,7 +8,7 @@ import LeaderboardTable from '@/components/LeaderboardTable'
 
 export const metadata: Metadata = {
   title: 'Leaderboard',
-  description: 'Full individual leaderboard for the 25MX Engineering Readiness cohort, sorted by total score with attendance.',
+  description: 'Full individual leaderboard for the 25MX Placement Readiness cohort, sorted by total score with attendance.',
 }
 
 export const revalidate = 60
@@ -32,25 +32,25 @@ export default async function LeaderboardPage() {
       </div>
 
       {/* Quick distribution */}
-      <div className="grid grid-cols-3 gap-3">
-        <div className="stat-card">
-          <div className="stat-label">Highest Score</div>
-          <div className="stat-value">{maxScore}</div>
-          <div className="stat-sub">{students[0]?.name ?? '—'}</div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="stat-card p-6 glass hover:-translate-y-1 transition-transform">
+          <div className="stat-label mb-2 opacity-80">Highest Score</div>
+          <div className="stat-value text-3xl text-brand-400">{maxScore}</div>
+          <div className="stat-sub mt-2 opacity-60">{students[0]?.name ?? '—'}</div>
         </div>
-        <div className="stat-card">
-          <div className="stat-label">Average Score</div>
-          <div className="stat-value">
+        <div className="stat-card p-6 glass hover:-translate-y-1 transition-transform">
+          <div className="stat-label mb-2 opacity-80">Average Score</div>
+          <div className="stat-value text-3xl text-purple-300">
             {students.length > 0
               ? Math.round(students.reduce((s, st) => s + st.total, 0) / students.length)
               : 0}
           </div>
-          <div className="stat-sub">across {students.length} students</div>
+          <div className="stat-sub mt-2 opacity-60">across {students.length} students</div>
         </div>
-        <div className="stat-card">
-          <div className="stat-label">Lowest Score</div>
-          <div className="stat-value text-red-400">{students[students.length - 1]?.total ?? 0}</div>
-          <div className="stat-sub">{students[students.length - 1]?.name ?? '—'}</div>
+        <div className="stat-card p-6 glass hover:-translate-y-1 transition-transform">
+          <div className="stat-label mb-2 opacity-80">Lowest Score</div>
+          <div className="stat-value text-3xl text-pink-400">{students[students.length - 1]?.total ?? 0}</div>
+          <div className="stat-sub mt-2 opacity-60">{students[students.length - 1]?.name ?? '—'}</div>
         </div>
       </div>
 
