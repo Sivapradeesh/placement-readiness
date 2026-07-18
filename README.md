@@ -22,19 +22,19 @@ A fully transparent, GitHub-driven leaderboard and submission portal. No databas
 <!-- LEADERBOARD:START -->
 | Rank | Student | Roll No | Score | Attendance |
 |------|---------|---------|-------|-----------|
-| 🥇 1 | KASBIYA M | 25mx322 | 50 | 2/2 (100%) |
-| 🥈 2 | SABARISH P | 25mx343 | 50 | 2/2 (100%) |
-| 🥉 3 | VISHNUVARDANI K S | 25mx359 | 50 | 2/2 (100%) |
-| 4 | BARATHVIKRAMAN S K | 25mx103 | 50 | 2/2 (100%) |
-| 5 | Shanmugappriya K | 25mx223 | 48 | 2/2 (100%) |
-| 6 | Dayananda J | 25mx308 | 48 | 2/2 (100%) |
-| 7 | Tino Britty J | 25mx354 | 46 | 2/2 (100%) |
-| 8 | Induja E | 25mx315 | 43 | 2/2 (100%) |
-| 9 | DARUNYA SRI.M | 25mx307 | 25 | 1/2 (50%) |
-| 10 | Keerthanaa J | 25mx323 | 25 | 1/2 (50%) |
+| 🥇 1 | R.G.A.Sakthivel Mallaiah | 25mx217 | 50 | 2/2 (100%) |
+| 🥈 2 | KASBIYA M | 25mx322 | 50 | 2/2 (100%) |
+| 🥉 3 | SABARISH P | 25mx343 | 50 | 2/2 (100%) |
+| 4 | VISHNUVARDANI K S | 25mx359 | 50 | 2/2 (100%) |
+| 5 | BARATHVIKRAMAN S K | 25mx103 | 50 | 2/2 (100%) |
+| 6 | Shanmugappriya K | 25mx223 | 48 | 2/2 (100%) |
+| 7 | Dayananda J | 25mx308 | 48 | 2/2 (100%) |
+| 8 | Tino Britty J | 25mx354 | 46 | 2/2 (100%) |
+| 9 | Bhuvisha Priya | 25mx305 | 45 | 2/2 (100%) |
+| 10 | Induja E | 25mx315 | 43 | 2/2 (100%) |
 
 **🏆 Top Team:** Team 6 (avg: 10.9 pts)
-**Today's submissions:** 18/123 students submitted on 2026-07-17 · **Last updated:** 2026-07-18
+**Today's submissions:** 20/123 students submitted on 2026-07-17 · **Last updated:** 2026-07-18
 <!-- LEADERBOARD:END -->
 
 ---

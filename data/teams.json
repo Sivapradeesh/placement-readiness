@@ -103,8 +103,8 @@
       "25mx350",
       "25mx218"
     ],
-    "averageScore": 5,
-    "attendanceRate": 0.5,
+    "averageScore": 6.4,
+    "attendanceRate": 0.6,
     "helpingBonus": 0
   },
   "team5": {
@@ -181,8 +181,8 @@
       "25mx361",
       "25mx226"
     ],
-    "averageScore": 2.8,
-    "attendanceRate": 0.2,
+    "averageScore": 5.6,
+    "attendanceRate": 0.5,
     "helpingBonus": 0
   }
 }
