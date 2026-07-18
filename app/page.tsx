@@ -133,10 +133,21 @@ export default async function DashboardPage() {
           </div>
           <div>
             <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Today's Submissions</div>
-            <div className="text-3xl font-black text-white flex items-baseline gap-1">
-              {todaySubmissions} <span className="text-lg text-brand-500">/{totalStudents}</span>
-            </div>
-            <div className="text-xs text-slate-500 font-medium">{currentDayLabel}</div>
+            {todayMission ? (
+              <>
+                <div className="text-3xl font-black text-white flex items-baseline gap-1">
+                  {todaySubmissions} <span className="text-lg text-brand-500">/{totalStudents}</span>
+                </div>
+                <div className="text-xs text-slate-500 font-medium">{currentDayLabel}</div>
+              </>
+            ) : (
+              <>
+                <div className="text-2xl font-black text-slate-300 mt-1">
+                  Rest Day
+                </div>
+                <div className="text-[10px] text-brand-500 font-bold mt-1 uppercase tracking-widest">Catch Up Time</div>
+              </>
+            )}
           </div>
         </div>
 
@@ -186,48 +197,79 @@ export default async function DashboardPage() {
         <div className="card lg:col-span-2">
           <div className="flex items-center justify-between mb-6">
             <h2 className="font-bold text-lg text-white">Today's Status</h2>
-            <Link href={`/activities/${todayId}`} className="text-xs font-bold text-brand-500 hover:text-brand-400 transition-colors">
-              View day detail →
-            </Link>
+            {todayMission && (
+              <Link href={`/activities/${todayId}`} className="text-xs font-bold text-brand-500 hover:text-brand-400 transition-colors">
+                View day detail →
+              </Link>
+            )}
           </div>
           
-          <div className="bg-[#050505] border border-slate-800 rounded-xl p-5 mb-5">
-            <div className="flex justify-between items-center mb-2">
-              <span className="font-semibold text-white text-sm">{currentDayLabel} Submissions</span>
-              <span className="text-brand-400 text-xs font-bold bg-brand-500/10 px-2 py-1 rounded border border-brand-500/20">
-                {todaySubmissions}/{totalStudents} - {todayActivityDay ? todayActivityDay.submissionRate : 0}%
-              </span>
-            </div>
-            <div className="progress-bar w-full bg-slate-900 h-2 mb-3 shadow-inner">
-              <div 
-                className="progress-fill bg-brand-500 shadow-[0_0_10px_rgba(245,158,11,0.8)]" 
-                style={{ width: `${todayActivityDay ? todayActivityDay.submissionRate : 0}%` }}
-              />
-            </div>
-            <p className="text-xs text-slate-500 flex items-center gap-1.5">
-              <span>🎉</span> {todaySubmissions === totalStudents ? 'Everyone has submitted!' : `${totalStudents - todaySubmissions} students pending.`}
-            </p>
-          </div>
-
-          <div className="bg-[#050505] border border-slate-800 rounded-xl p-5">
-            <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-              <div className="w-5 h-5 rounded bg-green-500/20 text-green-500 flex items-center justify-center">
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-              </div>
-              Submitted – {currentDayLabel}
-            </h3>
-            
-            <div className="flex flex-wrap gap-2 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
-              {todaySubmittedStudents.map(roll => (
-                <div key={roll} className="px-2 py-1 rounded text-[10px] font-mono font-bold bg-[#1a1500] text-brand-400 border border-brand-500/30 hover:bg-brand-500/20 cursor-default transition-colors">
-                  {roll}
+          {todayMission ? (
+            <>
+              <div className="bg-[#050505] border border-slate-800 rounded-xl p-5 mb-5">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="font-semibold text-white text-sm">{currentDayLabel} Submissions</span>
+                  <span className="text-brand-400 text-xs font-bold bg-brand-500/10 px-2 py-1 rounded border border-brand-500/20">
+                    {todaySubmissions}/{totalStudents} - {todayActivityDay ? todayActivityDay.submissionRate : 0}%
+                  </span>
                 </div>
-              ))}
-              {todaySubmittedStudents.length === 0 && (
-                <div className="text-xs text-slate-500">No submissions found for today.</div>
-              )}
+                <div className="progress-bar w-full bg-slate-900 h-2 mb-3 shadow-inner">
+                  <div 
+                    className="progress-fill bg-brand-500 shadow-[0_0_10px_rgba(245,158,11,0.8)]" 
+                    style={{ width: `${todayActivityDay ? todayActivityDay.submissionRate : 0}%` }}
+                  />
+                </div>
+                <p className="text-xs text-slate-500 flex items-center gap-1.5">
+                  <span>🎉</span> {todaySubmissions === totalStudents ? 'Everyone has submitted!' : `${totalStudents - todaySubmissions} students pending.`}
+                </p>
+              </div>
+
+              <div className="bg-[#050505] border border-slate-800 rounded-xl p-5">
+                <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
+                  <div className="w-5 h-5 rounded bg-green-500/20 text-green-500 flex items-center justify-center">
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  </div>
+                  Submitted – {currentDayLabel}
+                </h3>
+                
+                <div className="flex flex-wrap gap-2 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
+                  {todaySubmittedStudents.map(roll => (
+                    <div key={roll} className="px-2 py-1 rounded text-[10px] font-mono font-bold bg-[#1a1500] text-brand-400 border border-brand-500/30 hover:bg-brand-500/20 cursor-default transition-colors">
+                      {roll}
+                    </div>
+                  ))}
+                  {todaySubmittedStudents.length === 0 && (
+                    <div className="text-xs text-slate-500">No submissions found for today.</div>
+                  )}
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="bg-[#050505] border border-slate-800 border-dashed rounded-xl p-8 flex flex-col items-center justify-center text-center relative overflow-hidden group min-h-[220px]">
+              <div className="absolute inset-0 bg-brand-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              
+              <div className="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-500 mb-4 group-hover:scale-110 group-hover:text-brand-400 group-hover:border-brand-500/30 transition-all duration-500 shadow-lg">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                </svg>
+              </div>
+
+              <h3 className="text-lg font-bold text-white mb-2">
+                No Mission Scheduled Today
+              </h3>
+              
+              <p className="text-slate-400 text-sm max-w-md mx-auto mb-6">
+                There are no active submissions required for today. Please use this time to catch up on any missed missions and submit your pull requests.
+              </p>
+
+              <Link href="/activities" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-500/10 text-brand-400 text-xs font-bold uppercase tracking-widest border border-brand-500/20 hover:bg-brand-500 hover:text-white hover:shadow-[0_0_20px_rgba(245,158,11,0.4)] transition-all duration-300 relative z-10">
+                <span>View Past Missions</span>
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </Link>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Team Standings */}
@@ -409,7 +451,9 @@ export default async function DashboardPage() {
                   )
                 })}
                 {todaySubmittedStudents.length === 0 && (
-                   <tr><td colSpan={2} className="py-4 text-xs text-center text-slate-500">No submissions yet today.</td></tr>
+                   <tr><td colSpan={2} className="py-8 text-xs text-center text-slate-500">
+                     {todayMission ? "No submissions yet today." : "No mission scheduled for today."}
+                   </td></tr>
                 )}
               </tbody>
             </table>
