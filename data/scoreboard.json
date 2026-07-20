@@ -3936,14 +3936,14 @@
     "manualAdjustments": null
   },
   "25mx323": {
-    "total": 25,
+    "total": 50,
     "byDay": {
       "2026-07-16": {
-        "submitted": 0,
-        "quality": 0,
-        "reflection": 0,
+        "submitted": 10,
+        "quality": 5,
+        "reflection": 5,
         "prompting": 0,
-        "documentation": 0
+        "documentation": 5
       },
       "2026-07-17": {
         "submitted": 10,
